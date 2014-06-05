@@ -2,6 +2,7 @@ powertest <-read.table("household_power_consumption.txt",header=TRUE,sep = ";")
 powertest$Date <-as.Date(powertest$Date, format="%d/%m/%Y")
 powertest$Global_active_power <-as.numeric(powertest$Global_active_power)
 powersub <- powertest[(powertest$Date >= "2007-02-01") & (powertest$Date <= "2007-02-02"), ]
+plot(powersub$Global_active_power, xlab="", ylab="Global Active Power (kilowatts)", xaxt="n", yaxt="n", pch="")
 lines(powersub$Global_active_power, xlab="", ylab="Global Active Power (kilowatts)", xaxt="n", yaxt="n")
 axis(1, at=c(0,1500,2900), labels=c("Thu","Fri","Sat"))
 axis(2, at=c(0,1000,2000,3000), labels=c("0","2","4","6"))
