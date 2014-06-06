@@ -1,7 +1,10 @@
-powertest <-read.table("household_power_consumption.txt",header=TRUE,sep = ";")
+powertest <-read.table("household_power_consumption.txt",header=TRUE,sep = ";", stringsAsFactors=FALSE, na.strings="?")
+powertest$Date <-as.Date(powertest$Date, format="%d/%m/%Y")
 powertest$Global_active_power <-as.numeric(powertest$Global_active_power)
 powersub <- powertest[(powertest$Date >= "2007-02-01") & (powertest$Date <= "2007-02-02"), ]
-hist(powersub$Global_active_power, col="red", xlab="Global Active Power (kilowatts)", main="Global Active Power", xaxt="n")
+x <-strptime(paste(powersub$Date, powersub$Time), format = "%Y-%m-%d %H:%M:%S")
+powersub[,3] <-as.numeric(powersub[,3])
+hist(powersub$Global_active_power, col="red", xlab="Global Active Power (kilowatts)", main="Global Active Power",)
 axis(1, at=c(0,1000,2000,3000), labels=c("0","2","4","6"))
 dev.copy(png, file="Plot1.png")
 dev.off()
