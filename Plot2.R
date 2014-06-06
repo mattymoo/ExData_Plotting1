@@ -5,7 +5,7 @@ powersub <- powertest[(powertest$Date >= "2007-02-01") & (powertest$Date <= "200
 powersub[,7] <-as.numeric(powersub[,7])
 powersub[,8] <-as.numeric(powersub[,8])
 powersub[,9] <-as.numeric(powersub[,9])
-plot(powersub[,c(7,8,9)], xlab="", ylab="Energy sub metering", xaxt="n", yaxt="n", pch="")
+plot(powersub$Global_active_power, xlab="", ylab="Energy sub metering", xaxt="n", yaxt="n", pch="")
 lines(powersub$Global_active_power, xlab="", ylab="Energy sub metering", xaxt="n", yaxt="n")
 axis(1, at=c(0,1500,2900), labels=c("Thu","Fri","Sat"))
 axis(2, at=c(0,1000,2000,3000), labels=c("0","2","4","6"))
