@@ -2,6 +2,7 @@ powertest <-read.table("household_power_consumption.txt",header=TRUE,sep = ";")
 powertest$Date <-as.Date(powertest$Date, format="%d/%m/%Y")
 powertest$Global_active_power <-as.numeric(powertest$Global_active_power)
 powersub <- powertest[(powertest$Date >= "2007-02-01") & (powertest$Date <= "2007-02-02"), ]
+png(file="Plot3.png")
 plot(powersub[,7], xlab="", ylab="Energy Sub Metering", xaxt="n", yaxt="n", pch="")
 lines(powersub[,7], xlab="", ylab="Energy Sub Metering", xaxt="n", yaxt="n")
 lines(powersub[,8], xlab="", ylab="Energy Sub Metering", xaxt="n", yaxt="n", col="red")
@@ -9,5 +10,4 @@ lines(powersub[,9], xlab="", ylab="Energy Sub Metering", xaxt="n", yaxt="n", col
 axis(1, at=c(0,1500,2900), labels=c("Thu","Fri","Sat"))
 axis(2, at=c(2,10,20,30), labels=c("0","10","20","30"))
 legend("topright", lty=c(1,1,1), col=c("black","red","blue"), legend=c("Sub_metering_1", "Sub_metering_2","Sub_metering_3"))
-dev.copy(png, file="Plot3.png")
 dev.off()
